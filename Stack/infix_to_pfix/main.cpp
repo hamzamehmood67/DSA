@@ -43,6 +43,7 @@ char *convert(char *infix)
         if (isOperand(infix[i]))
         {
             postfix[j++] = infix[i++];
+            // this is coment
         }
         else
         {
