@@ -125,3 +125,44 @@ void DoublyLL::deleteFromFront()
 
 //     ptr->previous->next=
 // }
+
+// void DoublyLL::insertAfterGivenData(int given, int newData)
+// {
+//     Node *newNode = new Node(newData);
+
+//     Node *ptr = head;
+
+//     while (ptr->data != given)
+//         ptr = ptr->next;
+
+//     ptr->next->previous = newNode;
+//     newNode->next = ptr->next;
+//     newNode->previous = ptr;
+// }
+
+void DoublyLL::insertAfterGivenData(int given, int newData)
+{
+    Node *newNode = new Node(newData);
+    Node *ptr = head;
+
+    while (ptr != nullptr && ptr->data != given)
+    {
+        ptr = ptr->next;
+    }
+
+    if (ptr == nullptr)
+    {
+        // Handle the case where the given data is not found in the list
+        std::cout << "Given data not found in the list." << std::endl;
+        delete newNode; // Clean up the allocated memory
+        return;
+    }
+
+    newNode->next = ptr->next;
+    if (ptr->next != nullptr)
+    {
+        ptr->next->previous = newNode;
+    }
+    newNode->previous = ptr;
+    ptr->next = newNode;
+}
