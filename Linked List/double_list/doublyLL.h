@@ -24,6 +24,7 @@ public:
     void reverseDisplay();
 
     void insertAtPos(int, int);
+    void insertAfterGivenData(int, int);
 };
 
 #endif
