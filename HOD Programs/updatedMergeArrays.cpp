@@ -6,12 +6,15 @@ void print(int *, int);
 
 int main()
 {
-    int arr1[3]{5, 5, 5};
-    int arr2[2]{5, 5};
-    int *arr3;
-    arr3 = mergeArrays(arr1, 3, arr2, 2);
+    int arr1[]{1, 3, 4, 5, 5, 5};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
 
-    print(arr3, 5);
+    int arr2[]{5, 5};
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    int *arr3;
+    arr3 = mergeArrays(arr1, size1, arr2, size2);
+    int size3 = *(&arr3 + 1) - arr3;
+    print(arr3, 9);
     return 0;
 }
 
@@ -19,42 +22,81 @@ int main()
 
 int *mergeArrays(int *first, int size1, int *second, int size2)
 {
-    int newSize{size1 + size2};
-
+    int newSize = size1 + size2;
     int *third = new int[newSize];
-
-    int i{}, j{}, k{};
+    int i = 0, j = 0, k = 0;
 
     while (i < size1 && j < size2)
     {
         if (first[i] < second[j])
-            third[k++] = first[i++];
-
-        else if (first[i] > second[j])
-            third[k++] = second[j++];
-
-        else
         {
-            if (size1 < size2)
+            if (k == 0)
             {
                 third[k++] = first[i++];
             }
             else
             {
+                if (first[i] != third[k - 1])
+                {
+                    third[k++] = first[i++];
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+        else if (first[i] > second[j])
+        {
+            if (k == 0)
+            {
                 third[k++] = second[j++];
             }
+            else
+            {
+                if (second[j] != third[k - 1])
+                {
+                    third[k++] = second[j++];
+                }
+                else
+                {
+                    j++;
+                }
+            }
+        }
+        else
+        {
+            third[k++] = first[i++];
+            j++;
         }
     }
 
+    // Copy remaining elements from the non-empty array
     while (i < size1)
-        third[k++] = first[i++];
+    {
+        if (first[i] != third[k - 1])
+        {
+            third[k++] = first[i++];
+        }
+        else
+        {
+            i++;
+        }
+    }
 
     while (j < size2)
-        third[k++] = second[j++];
-
+    {
+        if (second[j] != third[k - 1])
+        {
+            third[k++] = second[j++];
+        }
+        else
+        {
+            j++;
+        }
+    }
     return third;
 }
-
 void print(int *arr, int size)
 {
     for (int i = 0; i < size; i++)
