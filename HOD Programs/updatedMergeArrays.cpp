@@ -6,10 +6,10 @@ void print(int *, int);
 
 int main()
 {
-    int arr1[]{1, 3, 4, 5, 5, 5};
+    int arr1[]{5, 5, 5, 6};
     int size1 = sizeof(arr1) / sizeof(arr1[0]);
 
-    int arr2[]{5, 5};
+    int arr2[]{1, 3, 4, 6};
     int size2 = sizeof(arr2) / sizeof(arr2[0]);
     int *arr3;
     arr3 = mergeArrays(arr1, size1, arr2, size2);
