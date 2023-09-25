@@ -10,6 +10,7 @@ int main()
     tree.insert(15);
     tree.insert(9);
 
+    TreeNode *search = tree.search(19);
     tree.inOrderTaversal();
 
     return 0;

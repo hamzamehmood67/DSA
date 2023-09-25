@@ -12,8 +12,8 @@ private:
 public:
     Bst() : root(nullptr) {}
     void insert(int);
+    TreeNode *search(int);
     void inOrderTaversal();
-    // void inOrderRecursive(TreeNode *);
 };
 
 #endif
