@@ -6,7 +6,7 @@ void print(int *, int);
 
 int main()
 {
-    int arr1[]{1, 5, 5, 5, 6, 7, 7, 7};
+    int arr1[]{1, 5, 5, 5, 6, 6, 6, 7, 7, 7};
     int size1 = sizeof(arr1) / sizeof(arr1[0]);
 
     int arr2[]{2, 5, 5, 6};
@@ -36,55 +36,44 @@ int *mergeArrays(int *first, int size1, int *second, int size2)
         }
         else
         {
-            third[k++] = first[i++];
-            j++;
-
-            if (i < size1 && i < size2 && first[i] != second[j])
+            while (i < size1 && j < size2 && first[i] == second[j])
             {
-                if (first[i] == third[k - 1])
-                    i++;
-                else if (second[j] == third[k - 1])
-                {
-                    j++;
-                }
+                third[k++] = first[i++];
+                j++;
+            }
+
+            if (first[i] == third[k - 1])
+                i++;
+            else if (second[j] == third[k - 1])
+            {
+                j++;
             }
         }
     }
 
     // Copy remaining elements from the non-empty array
 
-    while (i < size1 && first[i] == second[size2 - 1])
-    {
-        i++;
-    }
+    // while (i < size1 && first[i] == second[size2 - 1])
+    // {
+    //     i++;
+    // }
 
     while (i < size1)
     {
         third[k++] = first[i++];
     }
 
-    // while (i < size1)
-    // {
-    //     if (first[i] != second[size2 - 1])
-    //     {
-    //         third[k++] = first[i++];
-    //     }
-    //     else
-    //     {
-    //         i++;
-    //     }
-    // }
-
     while (j < size2)
     {
-        if (second[j] != first[size1 - 1])
-        {
-            third[k++] = second[j++];
-        }
-        else
-        {
-            j++;
-        }
+        // if (second[j] != first[size1 - 1])
+        // {
+        //     third[k++] = second[j++];
+        // }
+        // else
+        // {
+        //     j++;
+        // }
+        third[k++] = second[j++];
     }
     return third;
 }
