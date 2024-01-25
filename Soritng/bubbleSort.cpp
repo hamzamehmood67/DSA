@@ -6,9 +6,9 @@ void print(int *, int);
 
 int main()
 {
-    int arr[5] = {5, 3, 6, 1, 7};
-    bubbleSort(arr, 5);
-    print(arr, 5);
+    int arr[11] = {5, 3, 6, 10, 72,1,4,7,6,0,1};
+    bubbleSort(arr,11);
+    print(arr,11);
 }
 
 void print(int *arr, int size)
@@ -20,11 +20,11 @@ void print(int *arr, int size)
 
 void bubbleSort(int *arr, int size)
 {
-    bool swaped{}; // to check if array is already sorted
-    for (int i = 0; i < size - 1; i++)
+    bool swaped{};
+    for (int i = 0; i < size ; i++)
     {
         swaped = false;
-        for (int j = 0; j < size - 1 - i; j++)
+        for (int j = 0; j < size - i; j++)
         {
             if (arr[j] > arr[j + 1])
             {

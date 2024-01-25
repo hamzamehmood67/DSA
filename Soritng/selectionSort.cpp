@@ -20,19 +20,19 @@ void print(int *arr, int size)
 
 void selectionSort(int *arr, int size)
 {
-    int minIdx{};
+    int k{};
     int j{};
     int i{};
 
     for (i = 0; i < size - 1; i++)
     {
-        for (j = minIdx = i; j < size; j++)
+        for (j = k = i; j < size; j++)
         {
-            if (arr[j] < arr[minIdx])
-                minIdx = j;
+            if (arr[j] < arr[k])
+                k = j;
         }
 
-        swap(arr[i], arr[minIdx]);
+        swap(arr[i], arr[k]);
     }
 }
 
