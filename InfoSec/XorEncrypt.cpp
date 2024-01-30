@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<algorithm>
+#include<cmath>
 using namespace std;
 
 void reverseStr(string& str)
@@ -52,7 +53,7 @@ string txtToBin(string str)
 
 }
 
-void encrypt(string plainTxt, string key)
+string encrypt(string plainTxt, string key)
 {
     string plainTxtBin= txtToBin(plainTxt);
     string keyBin=txtToBin(key);
@@ -74,6 +75,28 @@ void encrypt(string plainTxt, string key)
         
 } 
 
+
+void binToDec(string binaryStr)
+{
+    int size=binaryStr.length();
+    int Decimal{};
+    int power{};
+    for(int i{size-1} ; i>=0; i--)
+    {
+        if(binaryStr[i]=='1')
+        {
+            Decimal+=pow(2,power);
+        }
+        power++;
+    }
+
+    cout<<Decimal<<endl;
+
+
+}
+
+
+
 int main(){
 
   string plainTxt="";
@@ -84,6 +107,10 @@ int main(){
   cin>>key;
  
   encrypt(plainTxt,key);
+
+  enc
+
+   
 
 }
 
