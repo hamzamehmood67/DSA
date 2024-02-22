@@ -40,8 +40,10 @@ char Encryption(char plainTxt, char key)
     }
     /// Performing initial Permutation on Binary
     IP(binaryPlain);
-    for (int i = 0; i < 8; i++)
-        cout << binaryPlain[i];
+    // for (int i = 0; i < 8; i++)
+    //     cout << binaryPlain[i];
+
+    //Performing XOR of 
 
     return 'z';
 }
