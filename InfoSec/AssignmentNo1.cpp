@@ -1,7 +1,8 @@
-#include <iostream>
 #include <bits/stdc++.h>
 
 using namespace std;
+
+char *XOR(char *, char *);
 void IP(char *);
 char Encryption(char, char);
 void reverseStr(string &);
@@ -9,46 +10,61 @@ string decToBin(int);
 
 int main()
 {
-    char plainTxt = 'B';
-    char key = 'z';
+    char plainTxt = 'a';
+    char key = 'b';
     char chiper = Encryption(plainTxt, key);
-    // char bin[] = "12345678";
 
     return 0;
 }
 
 char Encryption(char plainTxt, char key)
 {
-    int asciPlain = int(plainTxt);
-    int asciKey = int(key);
     char binaryPlain[8];
     char binaryKey[8];
+    char *chiper{};
+    int asciPlain = int(plainTxt);
+    int asciKey = int(key);
+
     string binaryP = decToBin(asciPlain);
-    string binaryK = decToBin(asciPlain);
+    string binaryK = decToBin(asciKey);
 
     for (int i = 0; i < binaryP.size(); i++)
     {
         binaryPlain[i] = binaryP[i];
         binaryKey[i] = binaryK[i];
     }
+
     int i{3};
     int j{7};
+
     /// Performing first Operation of rearranging bits
     while (i >= 0)
     {
         swap(binaryPlain[i--], binaryPlain[j--]);
     }
+
     /// Performing initial Permutation on Binary
     IP(binaryPlain);
-    // for (int i = 0; i < 8; i++)
-    //     cout << binaryPlain[i];
 
-    //Performing XOR of 
-
+    // Performing XOR operation on Plain text and KEY
+    chiper = XOR(binaryPlain, binaryKey);
+    
     return 'z';
 }
 
 /// HELPER FUNCTIONS///////
+
+char *XOR(char *binaryPlain, char *binaryKey)
+{
+
+    char *chiper = new char[8];
+    for (int i = 0; i < 8; i++)
+    {
+        chiper[i] = ((binaryPlain[i] - '0') ^ (binaryKey[i] - '0')) + '0';
+    }
+
+    return chiper;
+}
 
 void IP(char *binary)
 {
