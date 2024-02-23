@@ -2,26 +2,49 @@
 
 using namespace std;
 
-char *XOR(char *, char *);
+string XOR(char *, char *);
 void IP(char *);
+void IPInverse(char *);
 char Encryption(char, char);
+char Decryption(char, char);
 void reverseStr(string &);
 string decToBin(int);
+char binToChar(string);
 
 int main()
 {
-    char plainTxt = 'a';
-    char key = 'b';
+    char plainTxt = 'c';
+    char key = 'Z';
     char chiper = Encryption(plainTxt, key);
+    cout << "Chiper is " << chiper << endl;
 
+    char Plain = Decryption(chiper, key);
     return 0;
 }
+char Decryption(char chiper, char key)
+{
+    string plainTxt{};
+    char binaryChiper[8];
+    char binaryKey[8];
+    string binaryC = decToBin(int(chiper));
+    string binaryK = decToBin(int(key));
+    for (int i = 0; i < binaryC.size(); i++)
+    {
+        binaryChiper[i] = binaryC[i];
+        binaryKey[i] = binaryK[i];
+    }
+    cout << "Chiper in Dec ";
+    // for (int i = 0; i < 8; i++)
+    //     cout << binaryChiper[i];
+    // cout << endl;
 
+    plainTxt = XOR(binaryChiper, binaryKey);
+}
 char Encryption(char plainTxt, char key)
 {
     char binaryPlain[8];
     char binaryKey[8];
-    char *chiper{};
+    string chiper{};
     int asciPlain = int(plainTxt);
     int asciKey = int(key);
 
@@ -48,19 +71,27 @@ char Encryption(char plainTxt, char key)
 
     // Performing XOR operation on Plain text and KEY
     chiper = XOR(binaryPlain, binaryKey);
-    
-    return 'z';
+
+    for (size_t i = 0; i < 8; i++)
+    {
+        cout << chiper[i];
+    }
+    cout << endl;
+    // cout << chiper.size();
+    // Converting CipherBinary back to character
+    return binToChar(chiper);
+    // return 'z';
 }
 
 /// HELPER FUNCTIONS///////
 
-char *XOR(char *binaryPlain, char *binaryKey)
+string XOR(char *binaryPlain, char *binaryKey)
 {
 
-    char *chiper = new char[8];
+    string chiper{};
     for (int i = 0; i < 8; i++)
     {
-        chiper[i] = ((binaryPlain[i] - '0') ^ (binaryKey[i] - '0')) + '0';
+        chiper += ((binaryPlain[i] - '0') ^ (binaryKey[i] - '0')) + '0';
     }
 
     return chiper;
@@ -82,6 +113,51 @@ void IP(char *binary)
         binary[i] = newBinary[i];
 
     delete[] newBinary;
+}
+void IPInverse(char *binary)
+{
+    char *newBinary = new char[8];
+    newBinary[0] = binary[7];
+    newBinary[1] = binary[3];
+    newBinary[2] = binary[6];
+    newBinary[3] = binary[2];
+    newBinary[4] = binary[5];
+    newBinary[5] = binary[1];
+    newBinary[6] = binary[4];
+    newBinary[7] = binary[0];
+
+    for (int i = 0; i < 8; i++)
+        binary[i] = newBinary[i];
+
+    delete[] newBinary;
+}
+
+char binToChar(string binaryString)
+{
+    // Check if the binary string has 8 digits
+    if (binaryString.size() != 8)
+    {
+        cout << "Binary string must be 8 digits long." << endl;
+        return '\0';
+    }
+
+    // Convert binary string to integer
+    int asciiValue = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (binaryString[i] == '1')
+        {
+            asciiValue |= (1 << (7 - i)); // Set the corresponding bit in asciiValue
+        }
+        else if (binaryString[i] != '0')
+        {
+            cout << "Invalid binary digit: " << binaryString[i] << endl;
+            return '\0';
+        }
+    }
+
+    // Convert ASCII value to character
+    return static_cast<char>(asciiValue);
 }
 
 string decToBin(int num)
