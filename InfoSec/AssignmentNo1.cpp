@@ -13,8 +13,8 @@ char binToChar(string);
 
 int main()
 {
-    char plainTxt = 'a';
-    char key = 'Z';
+    char plainTxt = 'z';
+    char key = 'z';
     char chiper = Encryption(plainTxt, key);
     cout << "Chiper is " << chiper << endl;
 
@@ -48,20 +48,27 @@ char Decryption(char chiper, char key)
         plainTxt[i] = plainT[i];
 
     IPInverse(plainTxt);
-
-    int i{5};
-    int j{0};
+    for (int i = 0; i < 8; i++)
+    {
+        cout << plainTxt[i];
+    }
+    cout << endl;
+    int i{3};
+    int j{7};
 
     /// Performing first Operation of rearranging bits
-    while (i <= 8)
+    while (i >= 0)
     {
-        swap(plainTxt[i++], binaryPlain[j++]);
+        swap(plainTxt[i--], plainTxt[j--]);
     }
-    // for (int i = 0; i < 8; i++)
-    // {
-    //     cout << plainTxt[i];
-    // }
-    // cout << endl;
+
+    for (int i = 0; i < 8; i++)
+    {
+        cout << plainTxt[i];
+    }
+    cout << endl;
+
+    return 'z';
 }
 char Encryption(char plainTxt, char key)
 {
