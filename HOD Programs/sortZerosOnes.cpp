@@ -23,14 +23,12 @@ void sortZerosOnes(int *arr, int size)
 {
     int i = 0 - 1;
 
-    for (int j = 0; i < size - 1; j++)
+    for (int j = 0; i < size; j++)
     {
-        if (arr[j] <= arr[size - 1])
+        if (arr[j] ==0)
         {
             i += 1;
             swap(arr[i], arr[j]);
         }
     }
-
-    swap(arr[i + 1], arr[size - 1]);
 }
