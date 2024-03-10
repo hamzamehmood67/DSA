@@ -4,31 +4,28 @@ using namespace std;
  void sortAnyThree(int *, int);
  int secMax(int* arr, int size);
 int main(){
-    int arr[10]= {3,3,3,9,9,3,9,3,9,3};
-    sortAnyThree(arr, 10);
-    print(arr, 10);
-    cout<<secMax(arr, 10);
+    int arr[10]= {2,0,2,0,1,1};
+    sortAnyThree(arr, 6);
+    print(arr, 6);
+    cout<<secMax(arr, 6);
 }
+int secMax( int* arr, int size) {
+        int maxIndex = 0;
+        int secondMaxIndex = -1;
 
-int secMax(int* arr, int size)
-{
-    int max{0};
-    int secMaxx{-1};
+        for (int i = 1; i < size; ++i) {
+            if (arr[i] > arr[maxIndex]) {
+                secondMaxIndex = maxIndex;
+                maxIndex = i;
+            } else if (arr[i] < arr[maxIndex]) {
+                if (secondMaxIndex == -1 || arr[i] > arr[secondMaxIndex]) {
+                    secondMaxIndex = i;
+                }
+            }
+        }
 
-    for(int i=0; i<size; i++)
-    {
-        if(arr[i]>arr[max])
-            {
-                secMaxx=max;
-                max=i;
-            }
-            else if(secMaxx!=-1 && arr[i]>arr[secMaxx])
-            {
-                secMaxx=i;
-            }
-        return secMaxx;
+        return secondMaxIndex;
     }
-}
 void sortAnyThree(int * arr, int size)
 {
     int low{};
