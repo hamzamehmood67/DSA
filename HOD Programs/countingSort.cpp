@@ -38,6 +38,7 @@ void countSort(int* A, int * B,int size, int k)
         B[C[A[i]]-1]=A[i];
         C[A[i]]--;
     }
+    delete [] C;
 }
 
 void print(const int *arr, int size)
