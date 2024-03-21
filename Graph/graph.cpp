@@ -7,7 +7,7 @@ using namespace std;
 class Node{
   public:
       int data;
-      string color;
+    string color;
     Node* next;
         Node(int val)
         {
@@ -19,15 +19,18 @@ class Node{
 
 class Graph{
     int totalVertex;
+    Node *vertices;
     Node **adjList;
     public:
         Graph(int v)
         {
             totalVertex=v;
             adjList= new Node*[totalVertex];
+            vertice= new Node[totalVertex];
 
             for(int i=0; i<totalVertex; i++)
                 adjList[i]=nullptr;
+                vertice[i]=0; 
         }
 
         void addEdge(int src, int dest)
@@ -38,9 +41,9 @@ class Graph{
 
             //////For undirected graph.
 
-            newNode= new Node(src);
-            newNode->next= adjList[dest];
-            adjList[dest]=newNode;
+           // newNode= new Node(src);
+            //newNode->next= adjList[dest];
+           // adjList[dest]=newNode;
         }
 
         void printList(){
@@ -59,42 +62,6 @@ class Graph{
 
         void BFS(int src)
         {
-            cout<<"Src is "<<src<<endl;
-            Node* srcNode=adjList[src];
-            cout<<srcNode->data<<endl;
-            for(int i=0; i<totalVertex; i++)
-            {   
-                Node* u=adjList[i];
-                if(u!=srcNode)
-                {
-                    u->color="White";
-                }
-            }
-
-            srcNode->color="Gray";
-            queue<Node*> Q;
-
-            Q.push(srcNode);
-
-            while(!Q.empty())
-            {
-                Node * u=Q.front();
-                Q.pop();
-                Node *adjacent=adjList[u->data];
-                while(adjacent)
-                {
-                    if(adjacent->color=="White")
-                    {
-                        adjacent->color="Gray";
-                        cout<<adjacent->data;
-                        Q.push(adjacent);
-                    
-                    }
-                }
-
-                u->color="Black";
-            }
-
             
         }
 
