@@ -19,15 +19,15 @@ DArray(): cap(5), _size(0) {
 DArray(const DArray&);
 DArray& operator =(const DArray&);
 void push_back(int);
-int size();
+ int size() const;
 void print(){
     for(int i={}; i<_size; i++)
     {
         cout<<arr[i]<< " ";
-    }
+    }l
 }
 
-int& operator[](int idx)
+int& operator[](int idx) const
 {
     if(idx>=_size || idx<0){
         throw invalid_argument("Error: Invalid Index");
@@ -62,7 +62,7 @@ DArray& DArray::operator=(const DArray& inArray)
       
     }
 
-int DArray::size()
+ int DArray::size() const
 {
     return _size;
 }
@@ -93,7 +93,7 @@ void DArray::increaseSize(){
     return ;
 }
  
-ostream& operator <<(ostream& out, DArray& arr)
+ostream& operator <<(ostream& out,const DArray& arr)
 {
     
     for(int i=0; i<arr.size(); i++)
