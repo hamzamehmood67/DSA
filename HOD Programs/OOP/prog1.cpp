@@ -15,8 +15,7 @@ public:
 DArray(): cap(5), _size(0) {
     arr= new int[cap];
 }
-
-DArray(const DArray&);
+//DArray(const DArray&);
 DArray& operator =(const DArray&);
 void push_back(int);
  int size() const;
@@ -24,7 +23,7 @@ void print(){
     for(int i={}; i<_size; i++)
     {
         cout<<arr[i]<< " ";
-    }l
+    }
 }
 
 int& operator[](int idx) const
@@ -53,14 +52,14 @@ DArray& DArray::operator=(const DArray& inArray)
           return *this;
 }
 
- DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
-        arr = new int[cap];
-        for(int i = 0; i < _size; i++) {
-            arr[i] = inArray.arr[i];
-        }
+// DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
+  //      arr = new int[cap];
+    //    for(int i = 0; i < _size; i++) {
+      //      arr[i] = inArray.arr[i];
+        //}
 
       
-    }
+    //}
 
  int DArray::size() const
 {
@@ -129,7 +128,7 @@ int main(){
   DArray arr2{arr1};
   cout<<arr2<<endl;
   arr2=doSomething(arr1);
-cout<<arr2<<endl;
+    cout<<arr2<<endl;
 
     return 0;
 }
