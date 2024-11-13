@@ -15,26 +15,48 @@ public:
 DArray(): cap(5), _size(0) {
     arr= new int[cap];
 }
-//DArray(const DArray&);
+DArray(const DArray&);
 DArray& operator =(const DArray&);
 void push_back(int);
  int size() const;
-void print(){
-    for(int i={}; i<_size; i++)
-    {
-        cout<<arr[i]<< " ";
-    }
-}
+// void print(ostream&) const;
 
-int& operator[](int idx) const
+int& operator[](int idx) 
 {
     if(idx>=_size || idx<0){
         throw invalid_argument("Error: Invalid Index");
     }
+
+    cout<<"[] without CONST"<<endl;
     
     return arr[idx];
 }
+
+int operator[](int idx)  const
+{
+    if(idx>=_size || idx<0){
+        throw invalid_argument("Error: Invalid Index");
+    }
+
+    cout<<"[] with  CONST"<<endl;
+    
+    return arr[idx];
+}
+
 };
+
+
+// void DArray::print(ostream& out) const
+// {
+//     for(int i{}; i<_size ; i++)
+//     {
+//         arr[i]=5;
+//         out<<arr[i];
+        
+//     }
+  
+
+// }
 
 DArray& DArray::operator=(const DArray& inArray)
 {
@@ -52,14 +74,14 @@ DArray& DArray::operator=(const DArray& inArray)
           return *this;
 }
 
-// DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
-  //      arr = new int[cap];
-    //    for(int i = 0; i < _size; i++) {
-      //      arr[i] = inArray.arr[i];
-        //}
+DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
+       arr = new int[cap];
+       for(int i = 0; i < _size; i++) {
+           arr[i] = inArray.arr[i];
+        }
 
       
-    //}
+    }
 
  int DArray::size() const
 {
@@ -74,7 +96,6 @@ void DArray::push_back(int num)
 
     arr[_size++]=num;
     cout<<"Size is: "<< _size<<" Cap is "<<cap<<endl;
-    print();
     cout<<endl;
     return;
 }
@@ -95,12 +116,10 @@ void DArray::increaseSize(){
 ostream& operator <<(ostream& out,const DArray& arr)
 {
     
-    for(int i=0; i<arr.size(); i++)
+    for(int i{}; i<arr.size(); i++)
     {
         out<<arr[i];
-        out<<" ";
     }
-    
     return out;
 }
 
@@ -126,7 +145,6 @@ int main(){
   
   cout<<arr1<<endl;
   DArray arr2{arr1};
-  cout<<arr2<<endl;
   arr2=doSomething(arr1);
     cout<<arr2<<endl;
 
