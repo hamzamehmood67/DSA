@@ -38,7 +38,7 @@ int operator[](int idx)  const
     return arr[idx];
 }
 
-
+// DArray operator +(const DArray& );
 // ~DArray(){
 //     cout<<"Destructor Called"<<endl;
 // }
@@ -80,7 +80,7 @@ DArray::DArray(const int num)
     arr= new int[cap];
     for(int i=0; i<num; i++)
     {
-       arr[i]=0;
+       arr[i]=num;
     }
 }
 DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
@@ -142,6 +142,30 @@ DArray doSomething(DArray& arr)
     return arr;
 }
 
+// DArray DArray::operator+(const DArray& obj)
+// {
+//     int objSize=obj.size();
+//     int smallSize=objSize<_size?objSize: _size;
+//     DArray temp{objSize>_size?obj: *this};
+//     for(int i{}; i<smallSize; i++)
+//     {
+//         temp[i]=this->arr[i]+obj[i];
+//     }
+//     return temp;
+// }
+
+DArray operator+(const DArray& lhs, const DArray& rhs) {
+    int lhsSize = lhs.size();
+    int rhsSize = rhs.size();
+    int smallSize = lhsSize < rhsSize ? lhsSize : rhsSize;
+    DArray temp = lhsSize > rhsSize ? lhs : rhs;
+
+    for (int i = 0; i < smallSize; i++) {
+        temp[i] = lhs[i] + rhs[i];
+    }
+    return temp;
+}
+
 int main(){
     DArray arr1{};
     int num{};
@@ -157,8 +181,9 @@ int main(){
   arr2=doSomething(arr1);
     cout<<arr2<<endl;
   
-  arr2=DArray(10);
-  cout<<arr2<<endl;
+ arr2=3 + arr1;
+    
+    cout<<arr2<<endl;
   
     return 0;
 }
