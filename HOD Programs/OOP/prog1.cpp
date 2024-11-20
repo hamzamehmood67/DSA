@@ -15,6 +15,7 @@ public:
 DArray(): cap(5), _size(0) {
     arr= new int[cap];
 }
+DArray(int);
 DArray(const DArray&);
 DArray& operator =(const DArray&);
 void push_back(int);
@@ -26,9 +27,6 @@ int& operator[](int idx)
     if(idx>=_size || idx<0){
         throw invalid_argument("Error: Invalid Index");
     }
-
-    cout<<"[] without CONST"<<endl;
-    
     return arr[idx];
 }
 
@@ -37,12 +35,13 @@ int operator[](int idx)  const
     if(idx>=_size || idx<0){
         throw invalid_argument("Error: Invalid Index");
     }
-
-    cout<<"[] with  CONST"<<endl;
-    
     return arr[idx];
 }
 
+
+// ~DArray(){
+//     cout<<"Destructor Called"<<endl;
+// }
 };
 
 
@@ -74,6 +73,16 @@ DArray& DArray::operator=(const DArray& inArray)
           return *this;
 }
 
+DArray::DArray(const int num)
+{  
+     cap=num;
+    _size=num;
+    arr= new int[cap];
+    for(int i=0; i<num; i++)
+    {
+       arr[i]=0;
+    }
+}
 DArray::DArray(const DArray& inArray) : cap(inArray.cap), _size(inArray._size) {
        arr = new int[cap];
        for(int i = 0; i < _size; i++) {
@@ -147,6 +156,9 @@ int main(){
   DArray arr2{arr1};
   arr2=doSomething(arr1);
     cout<<arr2<<endl;
-
+  
+  arr2=DArray(10);
+  cout<<arr2<<endl;
+  
     return 0;
 }
