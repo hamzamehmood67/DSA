@@ -85,6 +85,7 @@ DArray::DArray(const int num)
         arr[i] = num;
     }
 }
+
 DArray::DArray(const DArray &inArray) : cap(inArray.cap), _size(inArray._size)
 {
     arr = new int[cap];
@@ -186,6 +187,7 @@ DArray &DArray::operator+=(const DArray &obj)
 
     return *this;
 }
+
 int main()
 {
     DArray arr1{};
