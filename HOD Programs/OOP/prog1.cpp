@@ -31,15 +31,6 @@ public:
         return arr[idx];
     }
 
-    int operator[](int idx)
-    {
-        if (idx >= _size || idx < 0)
-        {
-            throw invalid_argument("Error: Invalid Index");
-        }
-        return arr[idx];
-    }
-
     DArray &operator+=(const DArray &);
     // DArray operator +(const DArray& );
     // ~DArray(){
@@ -199,12 +190,12 @@ int main()
         arr1.push_back(num);
         cin >> num;
     }
-  
-  cout<<arr1<<endl;
-  DArray arr2{arr1};
-  cout<<arr2<<endl;
-  arr2=doSomething(arr1);
-    cout<<arr2<<endl;
+
+    cout << arr1 << endl;
+    DArray arr2{arr1};
+    cout << arr2 << endl;
+    arr2 = doSomething(arr1);
+    cout << arr2 << endl;
 
     return 0;
 }
