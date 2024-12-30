@@ -26,7 +26,7 @@ void print(){
     }
 }
 
-int& operator[](int idx) const
+int& operator[](int idx)
 {
     if(idx>=_size || idx<0){
         throw invalid_argument("Error: Invalid Index");
@@ -104,7 +104,7 @@ ostream& operator <<(ostream& out,const DArray& arr)
     return out;
 }
 
-DArray doSomething(DArray& arr)
+DArray doSomething(DArray arr)
 {
     for(int i{}; i<arr.size(); i++)
     {
@@ -125,10 +125,11 @@ int main(){
     }
   
   cout<<arr1<<endl;
-  DArray arr2{arr1};
+  DArray arr2;
+  arr2=arr1;
   cout<<arr2<<endl;
   arr2=doSomething(arr1);
-    cout<<arr2<<endl;
+  cout<<arr2<<endl;
 
     return 0;
 }
