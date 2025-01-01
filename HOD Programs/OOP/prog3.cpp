@@ -34,7 +34,7 @@ public:
 
 class FullName : public Name
 {
-    char *title; // Mr., Mrs., Dr., etc
+    char *title;
 
 public:
     FullName(char *f, char *l, char m, char *t) : Name(f, l, m)
@@ -43,6 +43,25 @@ public:
         strcpy(title, t);
     }
 
+    FullName(const FullName &f) : Name(f.fname, f.lname, f.mname)
+    {
+        title = new char[strlen(f.title) + 1];
+        strcpy(title, f.title);
+    }
+
+    void operator=(const FullName &f)
+    {
+        delete fname;
+        delete lname;
+        delete title;
+        fname = new char[strlen(f.fname) + 1];
+        strcpy(fname, f.fname);
+        lname = new char[strlen(f.lname) + 1];
+        strcpy(lname, f.lname);
+        mname = f.mname;
+        title = new char[strlen(f.title) + 1];
+        strcpy(title, f.title);
+    }
     void display()
     {
         cout << title << " ";
@@ -75,5 +94,7 @@ int main()
     f1.setTitle("Dr.");
     f1.setFname("Hamza");
     f1.display();
+    FullName f2 = f1;
+    f2.display();
     return 0;
 }
