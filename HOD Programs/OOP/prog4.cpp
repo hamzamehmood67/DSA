@@ -66,6 +66,8 @@ public:
         strcpy(tittle, f.tittle);
     }
 
+    
+
     void operator=(const FullName &f)
     {
         delete tittle;
