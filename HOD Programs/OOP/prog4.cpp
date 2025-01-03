@@ -68,6 +68,8 @@ public:
 
     
 
+    
+
     void operator=(const FullName &f)
     {
         delete tittle;
