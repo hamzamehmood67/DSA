@@ -101,5 +101,8 @@ int main()
     obj.display();
     FullName obj2{obj};
     obj2.display();
+    FullName obj1("Mr", "Ali", 'A', "mehmood");
+    obj2 = obj1;
+    obj2.display();
     return 0;
 }
