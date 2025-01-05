@@ -26,7 +26,7 @@ public:
         mname = obj.mname;
     }
 
-    void operator=(const Name &n)
+    Name &operator=(const Name &n)
     {
         delete fname;
         delete lname;
@@ -35,6 +35,8 @@ public:
         lname = new char[strlen(n.lname) + 1];
         strcpy(lname, n.lname);
         mname = n.mname;
+
+        return *this;
     }
     ~Name()
     {
@@ -43,45 +45,47 @@ public:
         cout << "Destructor called of Name" << endl;
     }
 
-    void display()
+    void display() const
     {
         cout << fname << " " << mname << " " << lname << endl;
     }
 };
 
-class FullName
+class FullName : public Name
 {
-    Name name;
+
     char *tittle;
 
 public:
-    FullName(const char *t, const char *f, const char m, const char *l) : name(f, m, l)
+    FullName(const char *t, const char *f, const char m, const char *l) : Name(f, m, l)
     {
         tittle = new char[strlen(t) + 1];
         strcpy(tittle, t);
     }
-    FullName(const FullName &f) : name(f.name)
+    FullName(const FullName &f) : Name(f)
     {
         tittle = new char[strlen(f.tittle) + 1];
         strcpy(tittle, f.tittle);
     }
 
-    
-
-    
-
-    void operator=(const FullName &f)
+    FullName &operator=(const FullName &f)
     {
+        if (&f == this)
+        {
+            return *this;
+        }
         delete tittle;
-        name = f.name;
+        Name::operator=(f);
         tittle = new char[strlen(f.tittle) + 1];
         strcpy(tittle, f.tittle);
+
+        return *this;
     }
 
-    void display()
+    void display() const override
     {
         cout << tittle << " ";
-        name.display();
+        Name::display();
     }
 
     ~FullName()
@@ -95,7 +99,6 @@ int main()
 {
     FullName obj("Mr", "Hamza", 'A', "mehmood");
     obj.display();
-    cout << endl;
     FullName obj2{obj};
     obj2.display();
     return 0;
