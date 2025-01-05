@@ -82,7 +82,7 @@ public:
         return *this;
     }
 
-    void display() const override
+    void display() const
     {
         cout << tittle << " ";
         Name::display();
