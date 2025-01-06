@@ -28,6 +28,7 @@ public:
 
     Name &operator=(const Name &n)
     {
+        cout << "Assignment operator called" << endl;
         delete fname;
         delete lname;
         fname = new char[strlen(n.fname) + 1];
@@ -75,7 +76,9 @@ public:
             return *this;
         }
         delete tittle;
-        Name::operator=(f);
+        // Name::operator=(f); do not call = operator of base class
+        Name(*this) = f;
+
         tittle = new char[strlen(f.tittle) + 1];
         strcpy(tittle, f.tittle);
 
