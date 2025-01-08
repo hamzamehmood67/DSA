@@ -91,6 +91,8 @@ public:
         Name::display();
     }
 
+    
+
     ~FullName()
     {
         delete tittle;
